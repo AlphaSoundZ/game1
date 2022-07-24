@@ -50,9 +50,15 @@ void GameState::render(sf::RenderTarget* target)
 void GameState::initKeybinds()
 {
     // Keybinds in the game state (so while you are playing)
-    // Movement
-    this->keybinds.emplace("MOVE_UP", this->supportedKeys->at("W"));
-    this->keybinds.emplace("MOVE_LEFT", this->supportedKeys->at("A"));
-    this->keybinds.emplace("MOVE_DOWN", this->supportedKeys->at("S"));
-    this->keybinds.emplace("MOVE_RIGHT", this->supportedKeys->at("D"));
+    ifstream ifs("Config/gamestate_keybinds.ini");
+    if (ifs.is_open())
+    {
+        string key = "", key_value = "";
+        while (ifs >> key >> key_value)
+        {
+            this->keybinds[key] = this->supportedKeys->at(key_value);
+        }
+        
+    }
+    ifs.close();
 }

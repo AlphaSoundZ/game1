@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "GameState.h"
+#include "MainMenuState.h"
 
 using namespace std;
 

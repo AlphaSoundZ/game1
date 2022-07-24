@@ -2,6 +2,7 @@
 #include "State.cpp"
 #include "GameState.cpp"
 #include "Entity.cpp"
+#include "MainMenuState.cpp"
 
 int main()
 {

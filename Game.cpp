@@ -32,15 +32,23 @@ void Game::initWindow()
 void Game::initKeys()
 {
     // List of all Key available
-    this->supportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
-    this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
-    this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
-    this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
-    this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
+    ifstream ifs("Config/supported_keys.ini");
+    if (ifs.is_open())
+    {
+        string key = "";
+        int key_value = 0;
+        while (ifs >> key >> key_value)
+        {
+            this->supportedKeys[key] = key_value;
+        }
+        
+    }
+    ifs.close();
 }
 
 void Game::initStates()
 {
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
     this->states.push(new GameState(this->window, &this->supportedKeys));
 }
 // Constructors/Destructors
