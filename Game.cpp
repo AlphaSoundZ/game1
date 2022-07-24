@@ -8,23 +8,36 @@ void Game::initWindow()
     // create SFML Window using Config file
 
     ifstream ifs("Config/window.ini");
+    this->videoModes = sf::VideoMode::getFullscreenModes();
 
     string title = "None";
-    sf::VideoMode window_bounds(800, 600);
+    sf::VideoMode window_bounds = sf::VideoMode::getDesktopMode();
+    bool fullscreen = false;
     unsigned framerate_limit = 120;
     bool v_sync_enabled = false;
+    unsigned antialiasing_level = 0;
 
     if (ifs.is_open())
     {
+        string key = "";
+        ifs >> key;
         getline(ifs, title);
-        ifs >> window_bounds.width >> window_bounds.height;
-        ifs >> framerate_limit;
-        ifs >> v_sync_enabled;
+        ifs >> key >> window_bounds.width >> window_bounds.height;
+        ifs >> key >> fullscreen;
+        ifs >> key >> framerate_limit;
+        ifs >> key >> v_sync_enabled;
+        ifs >> key >> antialiasing_level;
     }
 
     ifs.close();
 
-    this->window = new sf::RenderWindow(window_bounds, title);
+    this->fullscreen = fullscreen;
+    this->windowSettings.antialiasingLevel = antialiasing_level;
+    if (this->fullscreen)
+        this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Fullscreen, windowSettings);
+    else
+        this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, windowSettings);
+
     this->window->setFramerateLimit(framerate_limit);
     this->window->setVerticalSyncEnabled(v_sync_enabled);
 }
@@ -137,4 +150,11 @@ void Game::updateDt()
 void Game::endApplication()
 {
     cout << "Ending Application!" << endl;
+}
+
+void Game::initVariables()
+{
+    this->window = nullptr;
+    this->fullscreen = false;
+    this->dt = 0.f;    
 }

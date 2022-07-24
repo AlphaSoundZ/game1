@@ -13,6 +13,9 @@ private:
     // Variables
     sf::RenderWindow *window;
     sf::Event sfEvent;
+    vector<sf::VideoMode> videoModes;
+    sf::ContextSettings windowSettings;
+    bool fullscreen;
 
     sf::Clock dtClock;
     float dt;
@@ -25,6 +28,7 @@ private:
     void initWindow();
     void initKeys();
     void initStates();
+    void initVariables();
 
 public:
     // Constructor/Destructor
