@@ -13,6 +13,7 @@ private:
 
 
 protected:
+    stack<State*>* states;
     sf::RenderWindow* window;
     map<string, int>* supportedKeys;
     map<string, int> keybinds;
@@ -31,7 +32,7 @@ protected:
     virtual void initKeybinds() = 0;
 
 public:
-    State(sf::RenderWindow* window, map<string, int>* supportedKeys);
+    State(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states);
     virtual ~State();
 
     const bool & getQuit() const;

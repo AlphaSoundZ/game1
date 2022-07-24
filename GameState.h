@@ -16,7 +16,7 @@ private:
     void initKeybinds();
 
 public:
-    GameState(sf::RenderWindow* window, map<string, int>* supportedKeys);
+    GameState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states);
     virtual ~GameState();
 
     // Functions

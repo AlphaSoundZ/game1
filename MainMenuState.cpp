@@ -1,7 +1,7 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, map<string, int>* supportedKeys)
-    : State(window, supportedKeys)
+MainMenuState::MainMenuState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states)
+    : State(window, supportedKeys, states)
 {
     this->initFonts();
     this->initKeybinds();
@@ -37,6 +37,8 @@ void MainMenuState::updateButtons()
     // Quit the game
     if (this->buttons["EXIT_STATE"]->isPressed())
         this->quit = true;
+    if (this->buttons["GAME_STATE"]->isPressed())
+        this->states->push(new GameState(this->window, this->supportedKeys, this->states));
 }
 
 void MainMenuState::updateInput(const float& dt)
@@ -71,7 +73,7 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
 void MainMenuState::initKeybinds()
 {
     // Keybinds in the game state (so while you are playing)
-    ifstream ifs("Config/mainmenu_keybinds.ini");
+    ifstream ifs("Config/mainmenustate_keybinds.ini");
     if (ifs.is_open())
     {
         string key = "", key_value = "";

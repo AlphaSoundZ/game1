@@ -19,5 +19,5 @@ clean:
 run:
 	./make/app.exe
 
-run-release:
+release-run:
 	./make/app-release.exe
