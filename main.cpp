@@ -3,6 +3,7 @@
 #include "GameState.cpp"
 #include "Entity.cpp"
 #include "MainMenuState.cpp"
+#include "Button.cpp"
 
 int main()
 {
