@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "Entity.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ protected:
     sf::Vector2f mousePosView;
 
     // Ressources
-    vector<sf::Texture> textures;
+    map<string, sf::Texture> textures;
 
     // Functions
 
@@ -38,9 +38,7 @@ public:
 
     const bool & getQuit() const;
 
-    virtual void checkForQuit();
-
-    virtual void endState() = 0;
+    void endState();
     virtual void updateMousePositions();
     virtual void update(const float& dt) = 0;
     virtual void updateInput(const float& dt) = 0;

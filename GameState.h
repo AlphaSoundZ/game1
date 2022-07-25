@@ -13,19 +13,20 @@ private:
     bool debug = false;
     sf::Font font, robotoFont;
 
-    Entity player;
+    Player* player;
 
     // Functions
 
     void initKeybinds();
     void initFonts();
+    void initTextures();
+    void initPlayers();
 
 public:
     GameState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states);
     virtual ~GameState();
 
     // Functions
-    void endState();
 
     // Update
     void updateInput(const float& dt);

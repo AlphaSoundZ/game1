@@ -19,11 +19,6 @@ MainMenuState::~MainMenuState()
     }
 }
 
-void MainMenuState::endState()
-{
-    cout << "Ending MainMenuState!" << endl;
-}
-
 void MainMenuState::updateButtons()
 {
     // Updates all buttons in this state and hnaldes their functionality
@@ -34,16 +29,16 @@ void MainMenuState::updateButtons()
     }
 
     // on button event:
+    // quit the game
     if (this->buttons["EXIT_STATE"]->isPressed())
-        this->quit = true;
+        this->endState();
+    // new game
     if (this->buttons["GAME_STATE"]->isPressed())
         this->states->push(new GameState(this->window, this->supportedKeys, this->states));
 }
 
 void MainMenuState::updateInput(const float& dt)
 {
-    this->checkForQuit();
-
     // Toggle debug
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
     {

@@ -32,7 +32,6 @@ public:
     virtual ~MainMenuState();
 
     // Functions
-    void endState();
 
     // Update
     void updateButtons();
