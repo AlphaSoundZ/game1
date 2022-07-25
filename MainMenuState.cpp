@@ -3,12 +3,11 @@
 MainMenuState::MainMenuState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states)
     : State(window, supportedKeys, states)
 {
+    this->initVariables();
+    this->initBackground();
     this->initFonts();
     this->initKeybinds();
     this->initButtons();
-
-    this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
-    this->background.setFillColor(sf::Color::Magenta);
 }
 
 MainMenuState::~MainMenuState()
@@ -34,7 +33,7 @@ void MainMenuState::updateButtons()
         it.second->update(this->mousePosView);
     }
 
-    // Quit the game
+    // on button event:
     if (this->buttons["EXIT_STATE"]->isPressed())
         this->quit = true;
     if (this->buttons["GAME_STATE"]->isPressed())
@@ -44,6 +43,17 @@ void MainMenuState::updateButtons()
 void MainMenuState::updateInput(const float& dt)
 {
     this->checkForQuit();
+
+    // Toggle debug
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
+    {
+        if (!this->isKeyHold["DEBUG"])
+            this->debug = (this->debug) ? false : true;
+        this->isKeyHold["DEBUG"] = true;
+    }
+    else
+        this->isKeyHold["DEBUG"] = false;
+        
 }
 
 void MainMenuState::update(const float& dt)
@@ -60,6 +70,11 @@ void MainMenuState::render(sf::RenderTarget* target)
     
     target->draw(this->background);
     this->renderButtons(target);
+
+    if (this->debug == true)
+    {
+        this->renderDebug(target);
+    }
 }
 
 void MainMenuState::renderButtons(sf::RenderTarget* target)
@@ -70,6 +85,7 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
     }
 }
 
+// Init functions
 void MainMenuState::initKeybinds()
 {
     // Keybinds in the game state (so while you are playing)
@@ -80,6 +96,7 @@ void MainMenuState::initKeybinds()
         while (ifs >> key >> key_value)
         {
             this->keybinds[key] = this->supportedKeys->at(key_value);
+            this->isKeyHold[key] = false;
         }
         
     }
@@ -88,18 +105,65 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initFonts()
 {
-    if (!this->font.loadFromFile("Fonts/Roboto-Bold.ttf"))
+    if (!this->font.loadFromFile("Fonts/BASKVILL.ttf"))
+    {
+        throw("File missing! - Could not load font (in MainMenuState::initFonts)");
+    }
+    if (!this->robotoFont.loadFromFile("Fonts/Roboto-Bold.ttf"))
     {
         throw("File missing! - Could not load font (in MainMenuState::initFonts)");
     }
 }
 
+void MainMenuState::initBackground()
+{
+    this->background.setSize(
+        sf::Vector2f
+        (
+            static_cast<float>(this->window->getSize().x), 
+            static_cast<float>(this->window->getSize().y)
+        )
+    );
+
+    if (!this->backgroundTexture.loadFromFile("Ressources/Images/Backgrounds/bg1.png"))
+        throw("File missing! - Could not load Ressource (in MainMenuState::initBackground)");
+    
+    this->background.setTexture(&this->backgroundTexture);
+}
+
+void MainMenuState::initVariables()
+{
+
+}
+
 void MainMenuState::initButtons()
 {
-    this->buttons["GAME_STATE"] = new Button(100, 100, 150, 50, 
+    int topButton[4] = {707, 450, 300, 50}, distance = 20, nth_btn = 0;
+
+    this->buttons["GAME_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "New Game", 
         sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
-    this->buttons["EXIT_STATE"] = new Button(100, 300, 150, 50, 
+    nth_btn++;
+    this->buttons["SETTINGS"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+        &this->font, "Settings", 
+        sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+    nth_btn++;
+    this->buttons["EXIT_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Quit", 
         sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+
+}
+
+void MainMenuState::renderDebug(sf::RenderTarget* target)
+{
+        sf::Text mouseText;
+        mouseText.setPosition(this->mousePosView.x+10, this->mousePosView.y-15);
+        mouseText.setFont(this->robotoFont);
+        mouseText.setFillColor(sf::Color::Black);
+        mouseText.setCharacterSize(12);
+        stringstream ss;
+        ss << this->mousePosView.x << " " << this->mousePosView.y;
+        mouseText.setString(ss.str());
+
+        target->draw(mouseText);
 }

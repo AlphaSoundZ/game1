@@ -13,12 +13,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-enum button_states{BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
+enum button_states{BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE, BTN_RELEASED};
 
 class Button
 {
 private:
     short unsigned button_state;
+    map<string, bool> isKeyHold;
 
     sf::RectangleShape shape;
     sf::Font* font;

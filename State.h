@@ -17,6 +17,7 @@ protected:
     sf::RenderWindow* window;
     map<string, int>* supportedKeys;
     map<string, int> keybinds;
+    map<string, bool> isKeyHold;
     bool quit;
 
 
