@@ -13,6 +13,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+using namespace std;
+
 enum button_states{BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE, BTN_RELEASED};
 
 class Button
@@ -21,6 +23,8 @@ private:
     short unsigned button_state;
     map<string, bool> isKeyHold;
 
+
+public:
     sf::RectangleShape shape;
     sf::Font* font;
     sf::Text text;
@@ -28,8 +32,6 @@ private:
     sf::Color idleColor;
     sf::Color hoverColor;
     sf::Color activeColor;
-
-public:
     Button(float x, float y, float width, float height, 
         sf::Font* font, string text, 
         sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);

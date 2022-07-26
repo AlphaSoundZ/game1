@@ -35,6 +35,8 @@ void MainMenuState::updateButtons()
     // new game
     if (this->buttons["GAME_STATE"]->isPressed())
         this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+    if (this->buttons["SETTINGS_STATE"]->isPressed())
+        this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
 }
 
 void MainMenuState::updateInput(const float& dt)
@@ -120,7 +122,7 @@ void MainMenuState::initBackground()
         )
     );
 
-    if (!this->backgroundTexture.loadFromFile("Ressources/Images/Backgrounds/bg1.png"))
+    if (!this->backgroundTexture.loadFromFile("Ressources/Images/Backgrounds/mainmenu_bg1.png"))
         throw("File missing! - Could not load Ressource (in MainMenuState::initBackground)");
     
     this->background.setTexture(&this->backgroundTexture);
@@ -139,7 +141,7 @@ void MainMenuState::initButtons()
         &this->font, "New Game", 
         sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
     nth_btn++;
-    this->buttons["SETTINGS"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+    this->buttons["SETTINGS_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Settings", 
         sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
     nth_btn++;

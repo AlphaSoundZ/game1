@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "MainMenuState.h"
+#include "SettingsState.h"
 
 using namespace std;
 

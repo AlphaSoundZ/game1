@@ -4,6 +4,7 @@
 #include "Entity.cpp"
 #include "Player.cpp"
 #include "MainMenuState.cpp"
+#include "SettingsState.cpp"
 #include "Button.cpp"
 
 int main()

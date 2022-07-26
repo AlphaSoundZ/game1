@@ -37,10 +37,10 @@ public:
     void updateButtons();
     void updateInput(const float& dt);
     void update(const float& dt);
-    void renderButtons(sf::RenderTarget* target = nullptr);
-    void renderDebug(sf::RenderTarget* target = nullptr);
 
     // Render
+    void renderButtons(sf::RenderTarget* target = nullptr);
+    void renderDebug(sf::RenderTarget* target = nullptr);
     void render(sf::RenderTarget* target = nullptr);
 };
 
