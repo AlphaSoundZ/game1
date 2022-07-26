@@ -1,7 +1,5 @@
 #include "Game.h"
 
-// Static functions
-
 // Init functions
 void Game::initWindow()
 {
@@ -64,9 +62,17 @@ void Game::initStates()
     this->states.push(new MainMenuState(this->window, &this->supportedKeys, &this->states));
     // this->states.push(new GameState(this->window, &this->supportedKeys));
 }
+
+void Game::initVariables()
+{
+    this->window = nullptr;
+    this->fullscreen = false;
+    this->dt = 0.f;    
+}
 // Constructors/Destructors
 Game::Game()
 {
+    this->initVariables();
     this->initWindow();
     this->initKeys();
     this->initStates();
@@ -150,11 +156,4 @@ void Game::updateDt()
 void Game::endApplication()
 {
     cout << "Ending Application!" << endl;
-}
-
-void Game::initVariables()
-{
-    this->window = nullptr;
-    this->fullscreen = false;
-    this->dt = 0.f;    
 }
