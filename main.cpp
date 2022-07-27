@@ -6,6 +6,7 @@
 #include "MainMenuState.cpp"
 #include "SettingsState.cpp"
 #include "Button.cpp"
+#include "MovementComponent.cpp"
 
 int main()
 {

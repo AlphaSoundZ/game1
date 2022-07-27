@@ -1,12 +1,12 @@
 #include "Player.h"
 
 // Constructor/Destructor
-Player::Player(float x, float y, sf::Texture* texture)
+Player::Player(float x, float y, sf::Texture& texture)
 {
     this->initVariables();
     this->initComponents();
     
-    this->createSprite(texture);
+    this->setTexture(texture);
     this->setPosition(x, y);
 }
 
@@ -23,5 +23,5 @@ void Player::initVariables()
 
 void Player::initComponents()
 {
-
+    this->createMovementComponent(250.f, 15.f, 7.f);
 }
