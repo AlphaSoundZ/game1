@@ -135,19 +135,30 @@ void MainMenuState::initVariables()
 
 void MainMenuState::initButtons()
 {
-    int topButton[4] = {707, 450, 300, 50}, distance = 20, nth_btn = 0;
-
+    float topButton[4] = {707, 450, 300, 50}, distance = 20, nth_btn = 0;
     this->buttons["GAME_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "New Game", 
-        sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+        28, 33, 33, 
+        sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255),
+        sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
     nth_btn++;
     this->buttons["SETTINGS_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Settings", 
-        sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+        28, 33, 33, 
+        sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255),
+        sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
+    nth_btn++;
+    this->buttons["EDITOR_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+        &this->font, "Editor", 
+        28, 33, 33, 
+        sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), 
+        sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
     nth_btn++;
     this->buttons["EXIT_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Quit", 
-        sf::Color(100, 100, 100, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+        28, 33, 33, 
+        sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), 
+        sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
 
 }
 

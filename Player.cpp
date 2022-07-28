@@ -23,5 +23,5 @@ void Player::initVariables()
 
 void Player::initComponents()
 {
-    this->createMovementComponent(250.f, 15.f, 7.f);
+    this->createMovementComponent(300.f, 15.f, 5.f); // maxSpeed, acceleration, deceleration
 }

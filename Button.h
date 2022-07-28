@@ -29,12 +29,24 @@ public:
     sf::Font* font;
     sf::Text text;
 
+    unsigned textIdleSize;
+    unsigned textHoverSize;
+    unsigned textActiveSize;
+
+    sf::Color textIdleColor;
+    sf::Color textHoverColor;
+    sf::Color textActiveColor;
+
     sf::Color idleColor;
     sf::Color hoverColor;
     sf::Color activeColor;
+
+
     Button(float x, float y, float width, float height, 
-        sf::Font* font, string text, 
-        sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+        sf::Font* font, string text,
+        unsigned text_idle_size, unsigned text_hover_size, unsigned text_active_size,
+        sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color, 
+        sf::Color idle_color, sf::Color hover_color, sf::Color active_color);
     virtual ~Button();
     // Accessors
     const bool isPressed() const;
