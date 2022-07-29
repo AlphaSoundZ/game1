@@ -55,15 +55,6 @@ void MovementComponent::update(const float& dt)
     if (this->velocity.x < -this->maxVelocity)
         this->velocity.x = -this->maxVelocity;
 
-    if (this->sprite.getPosition().y < 0)
-        this->velocity.y = -this->velocity.y;
-    if (this->sprite.getPosition().y >(1080-this->sprite.getGlobalBounds().height))
-        this->velocity.y = -this->velocity.y;
-    if (this->sprite.getPosition().x < 0)
-        this->velocity.x = -this->velocity.x;
-    if (this->sprite.getPosition().x >(1920-this->sprite.getGlobalBounds().width))
-        this->velocity.x = -this->velocity.x;
-
     // Final move
     this->sprite.move(this->velocity * dt); // Uses velocity
 }
@@ -78,4 +69,14 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float& 
 const sf::Vector2f& MovementComponent::getVelocity() const
 {
     return this->velocity;
+}
+
+const string MovementComponent::faceDir(sf::Vector2f& mouse_pos) const
+{
+    if (mouse_pos.x > this->sprite.getPosition().x+this->sprite.getGlobalBounds().width/2)
+        return "RIGHT";
+    if (mouse_pos.x < this->sprite.getPosition().x+this->sprite.getGlobalBounds().width/2)
+        return "LEFT";
+    else
+        return "";
 }

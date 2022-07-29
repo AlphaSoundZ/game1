@@ -14,7 +14,7 @@ public:
     virtual ~Player();
 
     // Functions
-    virtual void update(const float& dt);
+    virtual void update(const float& dt, sf::Vector2f mouse_pos_view);
 };
 
 #endif
