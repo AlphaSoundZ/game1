@@ -8,10 +8,6 @@
 class Player : public Entity
 {
 private:
-    // Variables
-
-    // Init functions
-    void initVariables();
 
 public:
     Player(float x, float y, sf::Texture& texture_sheet);

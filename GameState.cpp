@@ -30,23 +30,23 @@ void GameState::updateInput(const float& dt)
     
     // Quit game state
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
-        this->isKeyHold["CLOSE"] = true;
+        this->isHold["CLOSE"] = true;
     else
     {
-        if (this->isKeyHold["CLOSE"])
+        if (this->isHold["CLOSE"])
             this->endState();
-        this->isKeyHold["CLOSE"] = false;
+        this->isHold["CLOSE"] = false;
     }
 
     // Toggle debug
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
     {
-        if (!this->isKeyHold["DEBUG"])
+        if (!this->isHold["DEBUG"])
             this->debug = (this->debug) ? false : true;
-        this->isKeyHold["DEBUG"] = true;
+        this->isHold["DEBUG"] = true;
     }
     else
-        this->isKeyHold["DEBUG"] = false;
+        this->isHold["DEBUG"] = false;
 }
 
 void GameState::update(const float& dt)
@@ -80,7 +80,7 @@ void GameState::initKeybinds()
         while (ifs >> key >> key_value)
         {
             this->keybinds[key] = this->supportedKeys->at(key_value);
-            this->isKeyHold[key] = false;
+            this->isHold[key] = false;
         }
         
     }

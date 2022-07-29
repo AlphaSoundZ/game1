@@ -76,19 +76,19 @@ void Button::update(const sf::Vector2f mousePos)
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
             this->button_state = BTN_ACTIVE;
-            this->isKeyHold["BUTTON"] = true;
+            this->isHold["BUTTON"] = true;
         }
         else
         {
-            if (this->isKeyHold["BUTTON"])
+            if (this->isHold["BUTTON"])
                 this->button_state = BTN_RELEASED;
-            this->isKeyHold["BUTTON"] = false;
+            this->isHold["BUTTON"] = false;
         }
         
         
     }
     else
-        this->isKeyHold["BUTTON"] = false;
+        this->isHold["BUTTON"] = false;
 
 
 

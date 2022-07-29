@@ -3,7 +3,6 @@
 // Constructor/Destructor
 Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
-    this->initVariables();
 
     this->setPosition(x, y);
 
@@ -17,12 +16,6 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 }
 
 Player::~Player()
-{
-
-}
-
-// Init functions
-void Player::initVariables()
 {
 
 }

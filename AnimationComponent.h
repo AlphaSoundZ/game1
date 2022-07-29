@@ -47,7 +47,7 @@ private:
         void play(const float& dt)
         {
             // Update timer
-            this->timer += 100.f * dt;
+                this->timer += 100.f * dt;
             if (this->timer >= this->animationTimer)
             {
                 // Reset timer

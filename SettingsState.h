@@ -14,7 +14,7 @@ private:
     sf::RectangleShape background;
     sf::Font font;
     sf::Font robotoFont;
-    map<string, bool> isKeyHold;
+    map<string, bool> isHold;
 
     bool debug = false;
 

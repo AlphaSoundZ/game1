@@ -14,8 +14,7 @@ Entity::~Entity()
 // Component functions
 void Entity::setTexture(sf::Texture& texture)
 {
-    // this->sprite.setTexture(texture);
-    // this->sprite.setScale(3.f, 3.f);
+    this->sprite.setTexture(texture);
 }
 
 
@@ -23,6 +22,11 @@ void Entity::setTexture(sf::Texture& texture)
 void Entity::setPosition(const float x, const float y) 
 {
     this->sprite.setPosition(x, y);
+}
+
+void Entity::setScale(const float scale)
+{
+    this->sprite.setScale(scale, scale);
 }
 
 void Entity::move(const float dir_x, const float dir_y, const float& dt)
@@ -33,9 +37,9 @@ void Entity::move(const float dir_x, const float dir_y, const float& dt)
     }
 }
 
+// Update functions
 void Entity::update(const float& dt)
 {
-    
 }
 
 void Entity::render(sf::RenderTarget* target)
@@ -43,16 +47,22 @@ void Entity::render(sf::RenderTarget* target)
     target->draw(this->sprite);
 }
 
+// Accessors
+bool Entity::contains(sf::Vector2f mouse_pos)
+{
+    return this->sprite.getGlobalBounds().contains(mouse_pos);
+}
+
 // Init functions
 void Entity::initVariables() {
     
     this->movementComponent = nullptr;
 }
+
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
 {
     this->movementComponent = new MovementComponent(this->sprite, maxVelocity, acceleration, deceleration);
 }
-
 void Entity::createAnimationComponent(sf::Texture& texture_sheet)
 {
     this->animationComponent = new AnimationComponent(sprite, texture_sheet);

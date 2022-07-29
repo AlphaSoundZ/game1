@@ -14,7 +14,14 @@ private:
     sf::RectangleShape background;
     sf::Font font;
     sf::Font robotoFont;
-    map<string, bool> isKeyHold;
+
+    Entity idlePlayer;
+    sf::Texture textureSheet;
+    
+    map<string, bool> isHold;
+    
+
+    string idlePlayerState;
 
     bool debug = false;
 
@@ -26,6 +33,7 @@ private:
     void initBackground();
     void initKeybinds();
     void initButtons();
+    void initIdlePlayer();
 
 public:
     MainMenuState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states);
@@ -35,6 +43,7 @@ public:
 
     // Update
     void updateButtons();
+    void updateIdlePlayer();
     void updateInput(const float& dt);
     void update(const float& dt);
 

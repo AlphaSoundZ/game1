@@ -21,7 +21,7 @@ class Button
 {
 private:
     short unsigned button_state;
-    map<string, bool> isKeyHold;
+    map<string, bool> isHold;
 
 
 public:

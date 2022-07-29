@@ -5,6 +5,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, map<string, int>* support
 {
     this->initVariables();
     this->initBackground();
+    this->initIdlePlayer();
     this->initFonts();
     this->initKeybinds();
     this->initButtons();
@@ -19,6 +20,7 @@ MainMenuState::~MainMenuState()
     }
 }
 
+// Update functions
 void MainMenuState::updateButtons()
 {
     // Updates all buttons in this state and hnaldes their functionality
@@ -44,12 +46,12 @@ void MainMenuState::updateInput(const float& dt)
     // Toggle debug
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
     {
-        if (!this->isKeyHold["DEBUG"])
+        if (!this->isHold["DEBUG"])
             this->debug = (this->debug) ? false : true;
-        this->isKeyHold["DEBUG"] = true;
+        this->isHold["DEBUG"] = true;
     }
     else
-        this->isKeyHold["DEBUG"] = false;
+        this->isHold["DEBUG"] = false;
         
 }
 
@@ -58,6 +60,9 @@ void MainMenuState::update(const float& dt)
     this->updateMousePositions();
     this->updateInput(dt);
     this->updateButtons();
+    this->updateIdlePlayer();
+
+    this->idlePlayer.animationComponent->play(this->idlePlayerState, dt);
 }
 
 void MainMenuState::render(sf::RenderTarget* target)
@@ -67,6 +72,8 @@ void MainMenuState::render(sf::RenderTarget* target)
     
     target->draw(this->background);
     this->renderButtons(target);
+
+    this->idlePlayer.render(target);
 
     if (this->debug == true)
     {
@@ -82,6 +89,32 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
     }
 }
 
+// Functions
+void MainMenuState::updateIdlePlayer()
+{
+    //this->idlePlayerState = "IDLE";
+    if (this->idlePlayer.contains(this->mousePosView))
+    {
+        // Pressed
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            this->isHold["IDLEPLAYER"] = true;
+        }
+        else
+        {
+            if (this->isHold["IDLEPLAYER"])
+            {
+                this->idlePlayerState = (this->idlePlayerState == "IDLE") ? "ACTION" : "IDLE";
+            }
+            this->isHold["IDLEPLAYER"] = false;
+        }
+        
+        
+    }
+    else
+        this->isHold["IDLEPLAYER"] = false;
+}
+
 // Init functions
 void MainMenuState::initKeybinds()
 {
@@ -93,7 +126,7 @@ void MainMenuState::initKeybinds()
         while (ifs >> key >> key_value)
         {
             this->keybinds[key] = this->supportedKeys->at(key_value);
-            this->isKeyHold[key] = false;
+            this->isHold[key] = false;
         }
         
     }
@@ -130,7 +163,7 @@ void MainMenuState::initBackground()
 
 void MainMenuState::initVariables()
 {
-
+    this->idlePlayerState = "IDLE";
 }
 
 void MainMenuState::initButtons()
@@ -160,6 +193,21 @@ void MainMenuState::initButtons()
         sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), 
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
 
+}
+
+void MainMenuState::initIdlePlayer()
+{
+    this->idlePlayerState = "IDLE";
+
+    // Player Animation on MainMenu Screen
+    if (!textureSheet.loadFromFile("Ressources/Images/Sprites/Player/player_sheet.png"))
+        throw("File missing! - Could not load player texture (in GameState::initTextures)");
+    this->idlePlayer.setTexture(textureSheet);
+    this->idlePlayer.createAnimationComponent(textureSheet);
+    this->idlePlayer.animationComponent->addAnimation("IDLE", 20.f, 0, 0, 3, 0, 73, 73);
+    this->idlePlayer.animationComponent->addAnimation("ACTION", 20.f, 0, 1, 3, 1, 73, 73);
+    this->idlePlayer.setPosition(1128, 335);
+    this->idlePlayer.setScale(7.f);
 }
 
 void MainMenuState::renderDebug(sf::RenderTarget* target)

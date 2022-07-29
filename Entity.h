@@ -15,10 +15,11 @@ protected:
     sf::Sprite sprite;
 
     MovementComponent* movementComponent;
-    AnimationComponent* animationComponent;
 
 
 public:
+    AnimationComponent* animationComponent;
+
     Entity();
     virtual ~Entity();
 
@@ -27,8 +28,12 @@ public:
     void createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration);
     void createAnimationComponent(sf::Texture& texture_sheet);
 
+    // Accessors
+    bool contains(sf::Vector2f mouse_pos);
+    
     // Functions
     virtual void setPosition(const float x, const float y);
+    virtual void setScale(const float scale);
     virtual void move(const float x, const float y, const float& dt);
 
     virtual void update(const float& dt);
