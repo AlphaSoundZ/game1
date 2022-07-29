@@ -101,13 +101,13 @@ void GameState::initFonts()
 
 void GameState::initTextures()
 {
-    if(!this->textures["PLAYER_IDLE"].loadFromFile("Ressources/Images/Sprites/Player/test.png"))
-        throw("File missing! - Could not load player idle texture (in GameState::initTextures)");
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("Ressources/Images/Sprites/Player/test.png"))
+        throw("File missing! - Could not load player texture (in GameState::initTextures)");
 }
 
 void GameState::initPlayers()
 {
-    this->player = new Player(0, 0, this->textures["PLAYER_IDLE"]);
+    this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
 }
 
 void GameState::renderDebug(sf::RenderTarget* target)

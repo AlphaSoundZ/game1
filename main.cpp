@@ -7,6 +7,7 @@
 #include "SettingsState.cpp"
 #include "Button.cpp"
 #include "MovementComponent.cpp"
+#include "AnimationComponent.cpp"
 
 int main()
 {

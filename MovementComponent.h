@@ -18,6 +18,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+using namespace std;
+
 class MovementComponent
 {
 private:
