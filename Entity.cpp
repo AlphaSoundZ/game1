@@ -14,8 +14,8 @@ Entity::~Entity()
 // Component functions
 void Entity::setTexture(sf::Texture& texture)
 {
-    this->sprite.setTexture(texture);
-    this->sprite.setScale(3.f, 3.f);
+    // this->sprite.setTexture(texture);
+    // this->sprite.setScale(3.f, 3.f);
 }
 
 

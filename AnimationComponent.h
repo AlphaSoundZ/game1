@@ -40,6 +40,7 @@ private:
 
             this->sprite.setTexture(this->textureSheet, true);
             this->sprite.setTextureRect(this->startRect);
+            this->sprite.setScale(3.f, 3.f);
         }
 
         // Functions

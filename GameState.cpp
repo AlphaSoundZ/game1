@@ -63,7 +63,7 @@ void GameState::render(sf::RenderTarget* target)
 {
     if (!target)
         target = this->window;
-    
+
     this->player->render(target);
     if (this->debug)
         this->renderDebug(target);
@@ -101,7 +101,7 @@ void GameState::initFonts()
 
 void GameState::initTextures()
 {
-    if(!this->textures["PLAYER_SHEET"].loadFromFile("Ressources/Images/Sprites/Player/test.png"))
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("Ressources/Images/Sprites/Player/player_sheet.png"))
         throw("File missing! - Could not load player texture (in GameState::initTextures)");
 }
 
