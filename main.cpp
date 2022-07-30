@@ -8,6 +8,7 @@
 #include "Button.cpp"
 #include "MovementComponent.cpp"
 #include "AnimationComponent.cpp"
+#include "EditorState.cpp"
 
 int main()
 {

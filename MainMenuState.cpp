@@ -34,11 +34,13 @@ void MainMenuState::updateButtons()
     // quit the game
     if (this->buttons["EXIT_STATE"]->isPressed())
         this->endState();
-    // new game
+
     if (this->buttons["GAME_STATE"]->isPressed())
         this->states->push(new GameState(this->window, this->supportedKeys, this->states));
     if (this->buttons["SETTINGS_STATE"]->isPressed())
         this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
+    if (this->buttons["EDITOR_STATE"]->isPressed())
+        this->states->push(new EditorState(this->window, this->supportedKeys, this->states));
 }
 
 void MainMenuState::updateInput(const float& dt)
