@@ -20,6 +20,8 @@
 
 using namespace std;
 
+enum movement_states { IDLE = 0, MOVING, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN };
+
 class MovementComponent
 {
 private:
@@ -39,9 +41,9 @@ public:
 
     // Accessors
     const sf::Vector2f& getVelocity() const;
+    const bool getState(const short unsigned state) const;
     
     // Functions
-    const string faceDir(sf::Vector2f& mousePos) const;
     void move(const float dir_x, const float dir_y, const float& dt);
     void update(const float& dt);
 };

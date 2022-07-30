@@ -71,12 +71,35 @@ const sf::Vector2f& MovementComponent::getVelocity() const
     return this->velocity;
 }
 
-const string MovementComponent::faceDir(sf::Vector2f& mouse_pos) const
+const bool MovementComponent::getState(const short unsigned state) const
 {
-    if (mouse_pos.x > this->sprite.getPosition().x+this->sprite.getGlobalBounds().width/2)
-        return "RIGHT";
-    if (mouse_pos.x < this->sprite.getPosition().x+this->sprite.getGlobalBounds().width/2)
-        return "LEFT";
-    else
-        return "";
+    switch (state)
+    {
+    case IDLE:
+        if (this->velocity.x == 0.f && this->velocity.y == 0.f)
+            return true;
+        break;
+    case MOVING_LEFT:
+        if (this->velocity.x < 0.f)
+            return true;
+        break;
+    case MOVING_RIGHT:
+        if (this->velocity.x > 0.f)
+            return true;
+        break;
+    case MOVING_UP:
+        if (this->velocity.y < 0.f)
+            return true;
+        break;
+    case MOVING_DOWN:
+        if (this->velocity.y > 0.f)
+            return true;
+        break;
+    case MOVING:
+        if (this->velocity.y != 0 || this->velocity.x != 0)
+            return true;
+        break;
+        break;
+    }
+    return false;
 }

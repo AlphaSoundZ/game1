@@ -25,18 +25,10 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
 {
     this->movementComponent->update(dt);
 
-    if (this->movementComponent->faceDir(mouse_pos_view) == "LEFT")
-    {
-        if (this->movementComponent->getVelocity().x == 0.f)
-            this->animationComponent->play("IDLE_LEFT", dt);
-        else
-            this->animationComponent->play("WALK_LEFT", dt);
-    }
-    if (this->movementComponent->faceDir(mouse_pos_view) == "RIGHT")
-    {
-        if (this->movementComponent->getVelocity().x == 0.f)
-            this->animationComponent->play("IDLE_RIGHT", dt);
-        else
-            this->animationComponent->play("WALK_RIGHT", dt);
-    }
+    if (this->movementComponent->getState(IDLE))
+        this->animationComponent->play("IDLE_LEFT", dt);
+    else if (this->movementComponent->getState(MOVING_LEFT))
+        this->animationComponent->play("WALK_LEFT", dt);
+    else if (this->movementComponent->getState(MOVING_RIGHT))
+        this->animationComponent->play("WALK_RIGHT", dt);
 }

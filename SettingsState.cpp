@@ -32,6 +32,10 @@ void SettingsState::updateButtons()
     // quit the game
     if (this->buttons["EXIT_STATE"]->isPressed())
         this->endState();
+    if (this->buttons["KEYBOARD_CONTROLS"]->isPressed())
+    {
+        system("C:\\Users\\janja\\Documents\\GIthubRepos\\game1\\Config\\gamestate_keybinds.ini");
+    }
 }
 
 void SettingsState::updateInput(const float& dt)
@@ -72,6 +76,8 @@ void SettingsState::render(sf::RenderTarget* target)
     
     target->draw(this->background);
     this->renderButtons(target);
+
+
 
     if (this->debug == true)
     {
@@ -148,12 +154,17 @@ void SettingsState::initButtons()
         sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255),
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
     nth_btn++;
+    this->buttons["KEYBOARD_CONTROLS"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+        &this->font, "Keyboard Controls", 
+        28, 33, 33, 
+        sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255),
+        sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
+    nth_btn++;
     this->buttons["EXIT_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Go Back", 
         28, 33, 33, 
         sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255), sf::Color(0, 0, 0, 255),
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
-    nth_btn++;
 }
 
 void SettingsState::renderDebug(sf::RenderTarget* target)
