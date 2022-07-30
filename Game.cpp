@@ -66,7 +66,36 @@ void Game::initVariables()
 {
     this->window = nullptr;
     this->fullscreen = false;
-    this->dt = 0.f;    
+    this->dt = 0.f;
+
+    // Fps Calculator:
+    this->updateClock.restart();
+    this->fpsText.setString("Fps: " + to_string((int)this->fps));
+    this->fpsText.setCharacterSize(15);
+    this->fpsText.setPosition(10, 10);
+    this->fpsText.setFont(this->font);
+
+    if (!this->font.loadFromFile("Fonts/Roboto-Bold.ttf"))
+        throw("Could not load font (in Game::initVariables)");
+}
+
+
+
+void Game::initGlobalKeybinds()
+{
+    // Keybinds in the game state (so while you are playing)
+    ifstream ifs("Config/global_keybinds.ini");
+    if (ifs.is_open())
+    {
+        string key = "", key_value = "";
+        while (ifs >> key >> key_value)
+        {
+            this->globalKeybinds[key] = this->supportedKeys.at(key_value);
+            this->isHold[key] = false;
+        }
+        
+    }
+    ifs.close();
 }
 // Constructors/Destructors
 Game::Game()
@@ -74,6 +103,7 @@ Game::Game()
     this->initVariables();
     this->initWindow();
     this->initKeys();
+    this->initGlobalKeybinds();
     this->initStates();
 }
 
@@ -121,7 +151,14 @@ void Game::update()
         this->endApplication();
         this->window->close();
     }
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->globalKeybinds.at("SHOW_FPS"))))
+    {
+        if (!this->isHold["SHOW_FPS"])
+            this->showFps = (this->showFps) ? false : true;
+        this->isHold["SHOW_FPS"] = true;
+    }
+    else
+        this->isHold["SHOW_FPS"] = false;
 }
 
 void Game::render() 
@@ -132,6 +169,8 @@ void Game::render()
     if (!this->states.empty())
         this->states.top()->render();
     
+    if (this->showFps)
+        this->renderFps();
 
     this->window->display();
 }
@@ -155,4 +194,18 @@ void Game::updateDt()
 void Game::endApplication()
 {
     cout << "Ending Application!" << endl;
+}
+
+void Game::renderFps()
+{
+    // Calculate;
+    this->fps = 1.f / this->dt;
+
+    if (this->updateClock.getElapsedTime().asMilliseconds() > 1000)
+    {
+        this->fpsText.setString("Fps: " + to_string((int)this->fps));
+        this->updateClock.restart();
+    }
+
+    this->window->draw(fpsText);
 }

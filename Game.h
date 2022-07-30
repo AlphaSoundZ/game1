@@ -23,12 +23,24 @@ private:
     stack<State*> states;
 
     map<string, int> supportedKeys;
+    map<string, int> globalKeybinds; // keybinds that work in every state
+
+    map<string, bool> isHold;
+
+    // Fps Calculator
+    sf::Clock updateClock;
+    float fps;
+    sf::Font font;
+    sf::Text fpsText;
+    bool showFps = false;
+
 
     // Init
     void initWindow();
     void initKeys();
     void initStates();
     void initVariables();
+    void initGlobalKeybinds();
 
 public:
     // Constructor/Destructor
@@ -47,6 +59,7 @@ public:
 
     // Render
     void render();
+    void renderFps();
 
     // Core
     void run();
