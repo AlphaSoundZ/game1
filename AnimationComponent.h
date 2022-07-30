@@ -82,6 +82,7 @@ public:
     sf::Sprite& sprite;
     sf::Texture& textureSheet;
     map<string, Animation*> animations;
+    Animation* lastAnimation;
 
     // Functions
     void addAnimation(const string key,  
