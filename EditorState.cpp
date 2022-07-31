@@ -67,7 +67,7 @@ void EditorState::render(sf::RenderTarget* target)
     if (!target)
         target = this->window;
 
-    this->renderButtons(target);
+    this->renderButtons(*target);
 
 
 
@@ -77,7 +77,7 @@ void EditorState::render(sf::RenderTarget* target)
     }
 }
 
-void EditorState::renderButtons(sf::RenderTarget* target)
+void EditorState::renderButtons(sf::RenderTarget& target)
 {
     for (auto &it : this->buttons)
     {

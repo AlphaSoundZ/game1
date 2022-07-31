@@ -43,9 +43,9 @@ void Entity::update(const float& dt)
 {
 }
 
-void Entity::render(sf::RenderTarget* target)
+void Entity::render(sf::RenderTarget& target)
 {
-    target->draw(this->sprite);
+    target.draw(this->sprite);
 
     if (this->hitboxComponent)
         this->hitboxComponent->render(target);

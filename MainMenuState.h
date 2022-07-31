@@ -49,7 +49,7 @@ public:
     void update(const float& dt);
 
     // Render
-    void renderButtons(sf::RenderTarget* target = nullptr);
+    void renderButtons(sf::RenderTarget& target);
     void renderDebug(sf::RenderTarget* target = nullptr);
     void render(sf::RenderTarget* target = nullptr);
 };

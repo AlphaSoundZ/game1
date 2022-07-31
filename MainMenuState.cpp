@@ -73,9 +73,9 @@ void MainMenuState::render(sf::RenderTarget* target)
         target = this->window;
     
     target->draw(this->background);
-    this->renderButtons(target);
+    this->renderButtons(*target);
 
-    this->idlePlayer.render(target);
+    this->idlePlayer.render(*target);
 
     if (this->debug == true)
     {
@@ -83,7 +83,7 @@ void MainMenuState::render(sf::RenderTarget* target)
     }
 }
 
-void MainMenuState::renderButtons(sf::RenderTarget* target)
+void MainMenuState::renderButtons(sf::RenderTarget& target)
 {
     for (auto &it : this->buttons)
     {

@@ -18,8 +18,8 @@ using namespace std;
 class HitboxComponent
 {
 private:
-    sf::Sprite& sprite;
     sf::RectangleShape hitbox;
+    sf::Sprite& sprite;
 
     float offsetX, offsetY;
 
@@ -31,7 +31,7 @@ public:
     bool checkIntersect(const sf::FloatRect& frect);
 
     void update();
-    void render(sf::RenderTarget* target);
+    void render(sf::RenderTarget& target);
 };
 
 #endif

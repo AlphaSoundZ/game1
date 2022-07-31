@@ -89,7 +89,7 @@ void SettingsState::renderButtons(sf::RenderTarget* target)
 {
     for (auto &it : this->buttons)
     {
-        it.second->render(target);
+        it.second->render(*target);
     }
 }
 

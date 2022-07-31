@@ -14,6 +14,8 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
     this->animationComponent->addAnimation("IDLE_LEFT", 20.f, 0, 1, 3, 1, 73, 73);
     this->animationComponent->addAnimation("WALK_RIGHT", 20.f, 0, 2, 3, 2, 73, 73);
     this->animationComponent->addAnimation("WALK_LEFT", 20.f, 0, 3, 3, 3, 73, 73);
+
+    this->setScale(3.f);
 }
 
 Player::~Player()
