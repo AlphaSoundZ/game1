@@ -29,6 +29,7 @@ public:
 
     // Functions
     bool checkIntersect(const sf::FloatRect& frect);
+    void setScale(const float scale);
 
     void update();
     void render(sf::RenderTarget& target);

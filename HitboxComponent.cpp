@@ -32,3 +32,8 @@ bool HitboxComponent::checkIntersect(const sf::FloatRect& frect)
 {
     return this->hitbox.getGlobalBounds().intersects(frect);
 }
+
+void HitboxComponent::setScale(const float scale)
+{
+    this->hitbox.setSize(sf::Vector2f(this->hitbox.getGlobalBounds().width*scale, this->hitbox.getGlobalBounds().height*scale)); // setScale would increase the border thickness
+}

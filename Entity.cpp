@@ -27,6 +27,8 @@ void Entity::setPosition(const float x, const float y)
 
 void Entity::setScale(const float scale)
 {
+    if (this->hitboxComponent)
+        this->hitboxComponent->setScale(scale);
     this->sprite.setScale(scale, scale);
 }
 
