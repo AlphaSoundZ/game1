@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "HitboxComponent.h"
 #include "MovementComponent.h"
 #include "AnimationComponent.h"
 
@@ -14,8 +15,8 @@ private:
 protected:
     sf::Sprite sprite;
 
+    HitboxComponent* hitboxComponent;
     MovementComponent* movementComponent;
-
 
 public:
     AnimationComponent* animationComponent;
@@ -25,6 +26,7 @@ public:
 
     // Component functions
     void setTexture(sf::Texture& texture);
+    void createHitboxComponent(sf::Sprite& sprite, const float offset_x, const float offset_y, const float width, const float height);
     void createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration);
     void createAnimationComponent(sf::Texture& texture_sheet);
 
