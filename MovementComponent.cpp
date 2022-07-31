@@ -71,35 +71,56 @@ const sf::Vector2f& MovementComponent::getVelocity() const
     return this->velocity;
 }
 
-const bool MovementComponent::getState(const short unsigned state) const
+const bool MovementComponent::getState(const short unsigned state)
 {
+    bool result = false;
     switch (state)
     {
     case IDLE:
         if (this->velocity.x == 0.f && this->velocity.y == 0.f)
-            return true;
+            result = true;
+        break;
+    case IDLE_DOWN:
+        if (this->velocity.x == 0.f && this->velocity.y == 0.f && (this->lastState == MOVING_DOWN || this->lastState == IDLE_DOWN))
+            result = true;
+        break;
+    case IDLE_UP:
+        if (this->velocity.x == 0.f && this->velocity.y == 0.f && (this->lastState == MOVING_UP || this->lastState == IDLE_UP))
+            result = true;
+        break;
+    case IDLE_LEFT:
+        if (this->velocity.x == 0.f && this->velocity.y == 0.f && (this->lastState == MOVING_LEFT || this->lastState == IDLE_LEFT))
+            result = true;
+        break;
+    case IDLE_RIGHT:
+        if (this->velocity.x == 0.f && this->velocity.y == 0.f && (this->lastState == MOVING_RIGHT || this->lastState == IDLE_RIGHT))
+            result = true;
         break;
     case MOVING_LEFT:
         if (this->velocity.x < 0.f)
-            return true;
+            result = true;
         break;
     case MOVING_RIGHT:
         if (this->velocity.x > 0.f)
-            return true;
+            result = true;
         break;
     case MOVING_UP:
         if (this->velocity.y < 0.f)
-            return true;
+            result = true;
         break;
     case MOVING_DOWN:
         if (this->velocity.y > 0.f)
-            return true;
+            result = true;
         break;
     case MOVING:
         if (this->velocity.y != 0 || this->velocity.x != 0)
-            return true;
+            result = true;
         break;
-        break;
+    }
+    if (result)
+    {
+        this->lastState = state;
+        return true;
     }
     return false;
 }

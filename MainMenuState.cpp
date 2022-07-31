@@ -202,7 +202,7 @@ void MainMenuState::initIdlePlayer()
     this->idlePlayerState = "IDLE";
 
     // Player Animation on MainMenu Screen
-    if (!textureSheet.loadFromFile("Ressources/Images/Sprites/Player/player_sheet.png"))
+    if (!textureSheet.loadFromFile("Ressources/Images/Sprites/Player/player_sheet_wizard.png"))
         throw("File missing! - Could not load player texture (in GameState::initTextures)");
     this->idlePlayer.setTexture(textureSheet);
     this->idlePlayer.createAnimationComponent(textureSheet);
