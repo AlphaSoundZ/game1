@@ -14,7 +14,7 @@ AnimationComponent::~AnimationComponent()
     }
 }
 
-void AnimationComponent::play(const string key, const float& dt)
+void AnimationComponent::play(const string key, const float& dt, const float& modifier_percentage) // modifier_percentage standard value is 1 (100%)
 {
     if (this->lastAnimation != this->animations[key])
     {
@@ -28,7 +28,7 @@ void AnimationComponent::play(const string key, const float& dt)
             this->lastAnimation = this->animations[key];
         }
     }
-    this->animations[key]->play(dt);
+    this->animations[key]->play(dt, modifier_percentage);
 }
 
 void AnimationComponent::addAnimation(const string key,

@@ -44,10 +44,11 @@ private:
         }
 
         // Functions
-        void play(const float& dt)
+        void play(const float& dt, float modifier_percentage)
         {
+            modifier_percentage = max(modifier_percentage, .5f);
             // Update timer
-                this->timer += 100.f * dt;
+                this->timer += modifier_percentage * 100.f * dt;
             if (this->timer >= this->animationTimer)
             {
                 // Reset timer
@@ -89,7 +90,7 @@ public:
         float animation_timer, 
         int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height);
 
-    void play(const string key, const float& dt);
+    void play(const string key, const float& dt, const float& modifier_percentage = 1);
 };
 
 #endif

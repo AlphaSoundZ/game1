@@ -35,9 +35,9 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
     this->movementComponent->update(dt);
 
     if (this->movementComponent->getState(MOVING_UP))
-        this->animationComponent->play("WALK_UP", dt);
+        this->animationComponent->play("WALK_UP", dt, (max(this->movementComponent->getVelocity().y, this->movementComponent->getVelocity().x) / this->movementComponent->getMaxVelocity()));
     else if (this->movementComponent->getState(MOVING_DOWN))
-        this->animationComponent->play("WALK_DOWN", dt);
+        this->animationComponent->play("WALK_DOWN", dt, (max(this->movementComponent->getVelocity().y, this->movementComponent->getVelocity().x) / this->movementComponent->getMaxVelocity()));
     else if (this->movementComponent->getState(IDLE_LEFT))
         this->animationComponent->play("IDLE_LEFT", dt);
     else if (this->movementComponent->getState(IDLE_RIGHT))
@@ -47,9 +47,9 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
     else if (this->movementComponent->getState(IDLE_UP))
         this->animationComponent->play("IDLE_UP", dt);
     else if (this->movementComponent->getState(MOVING_LEFT))
-        this->animationComponent->play("WALK_LEFT", dt);
+        this->animationComponent->play("WALK_LEFT", dt, (max(this->movementComponent->getVelocity().y, this->movementComponent->getVelocity().x) / this->movementComponent->getMaxVelocity()));
     else if (this->movementComponent->getState(MOVING_RIGHT))
-        this->animationComponent->play("WALK_RIGHT", dt);
+        this->animationComponent->play("WALK_RIGHT", dt, (max(this->movementComponent->getVelocity().y, this->movementComponent->getVelocity().x) / this->movementComponent->getMaxVelocity()));
     else
         this->animationComponent->play("IDLE_DOWN", dt);
         
