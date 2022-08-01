@@ -69,7 +69,7 @@ private:
         }
         void reset()
         {
-            this->timer = 0.f;
+            this->timer = this->animationTimer;
             this->currentRect = this->startRect;
         }
     };
