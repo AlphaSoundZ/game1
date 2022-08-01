@@ -49,7 +49,7 @@ void Entity::render(sf::RenderTarget& target)
 {
     target.draw(this->sprite);
 
-    if (this->hitboxComponent)
+	if (this->showHitbox && this->hitboxComponent)
         this->hitboxComponent->render(target);
 }
 

@@ -38,7 +38,7 @@ void GameState::updateInput(const float& dt)
         this->isHold["CLOSE"] = false;
     }
 
-    // Toggle debug
+    // Toggle Debug
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
     {
         if (!this->isHold["DEBUG"])
@@ -47,6 +47,16 @@ void GameState::updateInput(const float& dt)
     }
     else
         this->isHold["DEBUG"] = false;
+    
+    // Toggle Hitbox
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("HITBOX"))))
+    {
+        if (!this->isHold["HITBOX"])
+            this->player->showHitbox = (this->player->showHitbox) ? false : true;
+        this->isHold["HITBOX"] = true;
+    }
+    else
+        this->isHold["HITBOX"] = false;
 }
 
 void GameState::update(const float& dt)

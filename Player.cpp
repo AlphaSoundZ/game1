@@ -50,7 +50,6 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
         this->animationComponent->play("WALK_LEFT", dt);
     else if (this->movementComponent->getState(MOVING_RIGHT))
         this->animationComponent->play("WALK_RIGHT", dt);
-    else
-        this->animationComponent->play("IDLE_DOWN", dt);
+        
     this->hitboxComponent->update();
 }

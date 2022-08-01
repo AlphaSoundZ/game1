@@ -24,6 +24,9 @@ public:
     Entity();
     virtual ~Entity();
 
+    // Variables
+    bool showHitbox = false;
+
     // Component functions
     void setTexture(sf::Texture& texture);
     void createHitboxComponent(sf::Sprite& sprite, const float offset_x, const float offset_y, const float width, const float height);
