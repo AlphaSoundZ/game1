@@ -40,3 +40,8 @@ void AnimationComponent::addAnimation(const string key,
         this->textureSheet, animation_timer, 
         start_frame_x, start_frame_y, frames_x, frames_y, width, height);
 }
+
+bool AnimationComponent::isPlaying(const string key)
+{
+    return this->animations[key]->isPlaying();
+}

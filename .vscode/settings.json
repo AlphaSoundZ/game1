@@ -21,6 +21,7 @@
         "streambuf": "cpp",
         "tuple": "cpp",
         "utility": "cpp",
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "iostream": "cpp"
     }
 }

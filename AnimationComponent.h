@@ -35,8 +35,8 @@ private:
         {
             this->timer = this->animationTimer;
             this->startRect = sf::IntRect(start_frame_x * width, start_frame_y * height, width, height);
-            this->currentRect = this->startRect;
             this->endRect = sf::IntRect(frames_x * width, frames_y * height, width, height);
+            this->currentRect = this->endRect;
 
             this->sprite.setTexture(this->textureSheet, true);
             this->sprite.setTextureRect(this->startRect);
@@ -71,7 +71,13 @@ private:
         void reset()
         {
             this->timer = this->animationTimer;
-            this->currentRect = this->startRect;
+            this->currentRect = this->endRect;
+        }
+        bool isPlaying()
+        {
+            if (this->currentRect != this->endRect)
+                return true;
+            return false;
         }
     };
 
@@ -91,6 +97,7 @@ public:
         int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height);
 
     void play(const string key, const float& dt, const float& modifier_percentage = 1);
+    bool isPlaying(const string key);
 };
 
 #endif
