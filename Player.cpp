@@ -35,11 +35,11 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
 {
     this->movementComponent->update(dt);
 
-    if (this->animationComponent->isPlaying("FURY_ABILITY"))
-    {
-        // prevents from playing other animationComponents
-    }
-    else if (this->movementComponent->getState(MOVING_UP))
+    // if (this->animationComponent->isPlaying("FURY_ABILITY"))
+    // {
+    //     // prevents from playing other animationComponents
+    // }
+    if (this->movementComponent->getState(MOVING_UP))
         this->animationComponent->play("WALK_UP", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
     else if (this->movementComponent->getState(MOVING_DOWN))
         this->animationComponent->play("WALK_DOWN", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));

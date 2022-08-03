@@ -28,13 +28,10 @@ void GameState::updateInput(const float& dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
         this->player->move(1.f, 0.f, dt);
 
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Button(this->keybinds.at("FURY_ABILITY"))) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("FURY_ABILITY"))))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button(this->keybinds.at("FURY_ABILITY"))) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("FURY_ABILITY"))) || this->player->animationComponent->isPlaying("FURY_ABILITY"))
     {
-        this->player->animationComponent->play("FURY_ABILITY", dt);
+        this->player->animationComponent->play("FURY_ABILITY", dt, 1, true);
     }
-    else if (this->player->animationComponent->isPlaying("FURY_ABILITY"))
-        this->player->animationComponent->play("FURY_ABILITY", dt);
-    
     
     // Quit game state
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))

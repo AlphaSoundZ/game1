@@ -93,13 +93,14 @@ public:
     sf::Texture& textureSheet;
     map<string, Animation*> animations;
     Animation* lastAnimation;
+    Animation* priorityAnimation = NULL;
 
     // Functions
     void addAnimation(const string key,  
         float animation_timer, 
         int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height);
 
-    void play(const string key, const float& dt, const float& modifier_percentage = 1);
+    void play(const string key, const float& dt, const float& modifier_percentage = 1, const bool priority = false);
     bool isPlaying(const string key);
 };
 

@@ -14,13 +14,34 @@ AnimationComponent::~AnimationComponent()
     }
 }
 
-void AnimationComponent::play(const string key, const float& dt, const float& modifier_percentage) // modifier_percentage standard value is 1 (100%)
+void AnimationComponent::play(const string key, const float& dt, const float& modifier_percentage, const bool priority) // modifier_percentage standard value is 1 (100%)
 {
-    if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
-        this->lastAnimation->reset();
-    this->lastAnimation = this->animations[key];
-    
-    this->animations[key]->play(dt, modifier_percentage);
+    if (this->priorityAnimation)
+    {
+        if (this->priorityAnimation == this->animations[key])
+        {
+            if (!this->isPlaying(key))
+                this->priorityAnimation = NULL;
+
+            if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
+                this->lastAnimation->reset();
+            this->lastAnimation = this->animations[key];
+            
+            this->animations[key]->play(dt, modifier_percentage);
+        }
+    }
+    else if (priority)
+    {
+        this->priorityAnimation = this->animations[key];
+        this->animations[key]->play(dt, modifier_percentage);
+    }
+    else
+    {
+        if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
+            this->lastAnimation->reset();
+        this->lastAnimation = this->animations[key];
+        this->animations[key]->play(dt, modifier_percentage);
+    }
 }
 
 void AnimationComponent::addAnimation(const string key,
