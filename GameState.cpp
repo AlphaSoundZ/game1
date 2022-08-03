@@ -27,6 +27,15 @@ void GameState::updateInput(const float& dt)
         this->player->move(0.f, 1.f, dt);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
         this->player->move(1.f, 0.f, dt);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button(this->keybinds.at("FURY_ABILITY"))) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("FURY_ABILITY"))))
+    {
+        this->player->animationComponent->play("FURY_ABILITY", dt);
+        cout << "clicked: " << endl;
+    }
+    else if (this->player->animationComponent->isPlaying("FURY_ABILITY"))
+        this->player->animationComponent->play("FURY_ABILITY", dt);
+    
     
     // Quit game state
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))

@@ -26,6 +26,7 @@ private:
         float animationTimer, timer;
         int width, height;
         sf::IntRect startRect, currentRect, endRect;
+        bool hasEndReached = true;
         
         Animation(sf::Sprite& sprite, sf::Texture& texture_sheet, 
             float animation_timer, 
@@ -36,16 +37,17 @@ private:
             this->timer = this->animationTimer;
             this->startRect = sf::IntRect(start_frame_x * width, start_frame_y * height, width, height);
             this->endRect = sf::IntRect(frames_x * width, frames_y * height, width, height);
-            this->currentRect = this->endRect;
+            this->currentRect = this->startRect;
+            this->currentRect.left = this->startRect.left-this->width;
 
             this->sprite.setTexture(this->textureSheet, true);
             this->sprite.setTextureRect(this->startRect);
-            // this->sprite.setScale(3.f, 3.f);
         }
 
         // Functions
         void play(const float& dt, float modifier_percentage)
         {
+            this->hasEndReached = false;
             modifier_percentage = max(modifier_percentage, .5f);
             // Update timer
                 this->timer += modifier_percentage * 100.f * dt;
@@ -59,23 +61,24 @@ private:
                 {
                     this->currentRect.left += this->width;
                 }
-                else // Go to first frame
+                else // Reset
                 {
                     this->currentRect.left = this->startRect.left;
+                    this->hasEndReached = true;
                 }
 
                 this->sprite.setTextureRect(this->currentRect);
-
             }
+
         }
         void reset()
         {
             this->timer = this->animationTimer;
-            this->currentRect = this->endRect;
+            this->currentRect = this->startRect;
         }
         bool isPlaying()
         {
-            if (this->currentRect != this->endRect)
+            if (!this->hasEndReached)
                 return true;
             return false;
         }
