@@ -14,6 +14,7 @@ public:
     virtual ~Player();
 
     // Functions
+    void movementLock(const bool toggle);
     virtual void update(const float& dt, sf::Vector2f mouse_pos_view);
 };
 

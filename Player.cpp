@@ -16,7 +16,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
     this->animationComponent->addAnimation("IDLE_LEFT",  60.f, 0, 2, 1, 2, 48, 48);
     this->animationComponent->addAnimation("IDLE_UP",    60.f, 0, 1, 1, 1, 48, 48);
     this->animationComponent->addAnimation("IDLE_DOWN",  60.f, 0, 0, 1, 0, 48, 48);
-    this->animationComponent->addAnimation("WALK_LEFT",  20.f, 2, 2, 3, 2, 48, 48); // mit 10.f ist es merkwürdigerweise genauso schnell wie WALK_RIGHT mit 20.f
+    this->animationComponent->addAnimation("WALK_LEFT",  20.f, 2, 2, 3, 2, 48, 48);
     this->animationComponent->addAnimation("WALK_RIGHT", 20.f, 2, 3, 3, 3, 48, 48);
     this->animationComponent->addAnimation("WALK_DOWN",  20.f, 2, 0, 3, 0, 48, 48);
     this->animationComponent->addAnimation("WALK_UP",    20.f, 2, 1, 3, 1, 48, 48);
@@ -35,11 +35,10 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
 {
     this->movementComponent->update(dt);
 
-    // if (this->animationComponent->isPlaying("FURY_ABILITY"))
-    // {
-    //     // prevents from playing other animationComponents
-    // }
-    if (this->movementComponent->getState(MOVING_UP))
+    if (this->movementComponent->getState(MOVEMENT_LOCKED))
+    {
+    }
+    else if (this->movementComponent->getState(MOVING_UP))
         this->animationComponent->play("WALK_UP", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
     else if (this->movementComponent->getState(MOVING_DOWN))
         this->animationComponent->play("WALK_DOWN", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
@@ -60,4 +59,9 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
 
 
     this->hitboxComponent->update();
+}
+
+void Player::movementLock(const bool toggle)
+{
+    this->movementComponent->movementLocked = toggle;
 }

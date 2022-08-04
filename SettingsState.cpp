@@ -44,7 +44,7 @@ void SettingsState::updateInput(const float& dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
     {
         if (!this->isHold["DEBUG"])
-            this->debug = (this->debug) ? false : true;
+            this->debug = !this->debug;
         this->isHold["DEBUG"] = true;
     }
     else

@@ -62,8 +62,11 @@ void MovementComponent::update(const float& dt)
 void MovementComponent::move(const float dir_x, const float dir_y, const float& dt)
 {
     // Acceleration
-    this->velocity.x += this->acceleration * dir_x * dt;
-    this->velocity.y += this->acceleration * dir_y * dt;
+    if (!this->movementLocked)
+    {
+        this->velocity.x += this->acceleration * dir_x * dt;
+        this->velocity.y += this->acceleration * dir_y * dt;
+    }
 }
 
 const sf::Vector2f& MovementComponent::getVelocity() const
@@ -121,6 +124,11 @@ const bool MovementComponent::getState(const short unsigned state)
         if (this->velocity.y != 0 || this->velocity.x != 0)
             result = true;
         break;
+    case MOVEMENT_LOCKED:
+        if (this->movementLocked)
+            result = true;
+        break;
+        
     }
     if (result)
     {

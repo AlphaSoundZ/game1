@@ -28,9 +28,12 @@ void GameState::updateInput(const float& dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
         this->player->move(1.f, 0.f, dt);
 
+    // Abilities
+    this->player->movementLock(false);
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button(this->keybinds.at("FURY_ABILITY"))) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("FURY_ABILITY"))) || this->player->animationComponent->isPlaying("FURY_ABILITY"))
     {
         this->player->animationComponent->play("FURY_ABILITY", dt, 1, true);
+        this->player->movementLock(true);
     }
     
     // Quit game state
@@ -47,7 +50,7 @@ void GameState::updateInput(const float& dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
     {
         if (!this->isHold["DEBUG"])
-            this->debug = (this->debug) ? false : true;
+            this->debug = !this->debug;
         this->isHold["DEBUG"] = true;
     }
     else
@@ -57,7 +60,7 @@ void GameState::updateInput(const float& dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("HITBOX"))))
     {
         if (!this->isHold["HITBOX"])
-            this->player->showHitbox = (this->player->showHitbox) ? false : true;
+            this->player->showHitbox = !this->player->showHitbox;
         this->isHold["HITBOX"] = true;
     }
     else

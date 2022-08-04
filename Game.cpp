@@ -154,7 +154,7 @@ void Game::update()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->globalKeybinds.at("SHOW_FPS"))))
     {
         if (!this->isHold["SHOW_FPS"])
-            this->showFps = (this->showFps) ? false : true;
+            this->showFps = !this->showFps;
         this->isHold["SHOW_FPS"] = true;
     }
     else

@@ -20,7 +20,7 @@
 
 using namespace std;
 
-enum movement_states { IDLE = 0, IDLE_DOWN, IDLE_UP, IDLE_LEFT, IDLE_RIGHT, MOVING, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN };
+enum movement_states { IDLE = 0, IDLE_DOWN, IDLE_UP, IDLE_LEFT, IDLE_RIGHT, MOVING, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN, MOVEMENT_LOCKED };
 
 class MovementComponent
 {
@@ -40,6 +40,8 @@ public:
     MovementComponent(sf::Sprite& sprite, 
         float maxVelocity, float acceleration, float deceleration);
     virtual ~MovementComponent();
+
+    bool movementLocked = false;
 
     // Accessors
     const sf::Vector2f& getVelocity() const;
