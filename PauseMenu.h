@@ -38,13 +38,14 @@ private:
 
     sf::RenderWindow* window;
 
-    bool** paused;
     
     void initButtons(sf::RenderWindow& window);
     void initFonts();
 public:
-    PauseMenu(sf::RenderWindow& window, bool* paused_ptr);
+    PauseMenu(sf::RenderWindow& window);
     virtual ~PauseMenu();
+
+    bool unpause = false;
 
     // Functions:
 

@@ -1,11 +1,8 @@
 #include "PauseMenu.h"
 
-PauseMenu::PauseMenu(sf::RenderWindow& window, bool* paused_ptr)
+PauseMenu::PauseMenu(sf::RenderWindow& window)
 {
-    this->paused = &paused_ptr;
     this->window = &window;
-    cout << paused_ptr << endl;
-    cout << this->paused << endl;
 
     this->initFonts();
 
@@ -105,12 +102,11 @@ void PauseMenu::updateButtons()
     if (this->buttons["EXIT_STATE"]->isPressed())
         cout << "EXIT!" << endl;
     if (this->buttons["UNPAUSE"]->isPressed())
-        this->set();
+        this->unpause = true;
     if (this->buttons["KEYBOARD_CONTROLS"]->isPressed())
     {
         system("C:\\Users\\janja\\Documents\\GIthubRepos\\game1\\Config\\gamestate_keybinds.ini");
     }
-    cout << this->paused << endl;
 }
 
 void PauseMenu::initFonts()
@@ -127,5 +123,4 @@ void PauseMenu::initFonts()
 
 void PauseMenu::set()
 {
-    **this->paused = false;
 }

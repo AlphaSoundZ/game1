@@ -2,7 +2,7 @@
 
 // Constructor / destructor
 GameState::GameState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states)
-    : State(window, supportedKeys, states), pauseMenu(*window, &this->paused)
+    : State(window, supportedKeys, states), pauseMenu(*window)
 {
     this->initFonts();
     this->initKeybinds();
@@ -77,6 +77,12 @@ void GameState::update(const float& dt)
     else
     {
         this->isHold["CLOSE"] = false;
+    }
+
+    if (this->pauseMenu.unpause)
+    {
+        this->unspauseState();
+        this->pauseMenu.unpause = false;
     }
 
 
