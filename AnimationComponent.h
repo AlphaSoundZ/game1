@@ -50,7 +50,7 @@ private:
             this->hasEndReached = false;
             modifier_percentage = max(modifier_percentage, .5f);
             // Update timer
-                this->timer += modifier_percentage * 100.f * dt;
+            this->timer += modifier_percentage * 100.f * dt;
             if (this->timer >= this->animationTimer)
             {
                 // Reset timer
@@ -74,7 +74,7 @@ private:
         void reset()
         {
             this->timer = this->animationTimer;
-            this->currentRect = this->startRect;
+            this->currentRect = this->endRect;
         }
         bool isPlaying()
         {

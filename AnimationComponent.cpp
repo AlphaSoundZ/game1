@@ -18,20 +18,25 @@ void AnimationComponent::play(const string key, const float& dt, const float& mo
 {
     if (this->priorityAnimation)
     {
-        if (this->priorityAnimation == this->animations[key])
+        if (this->priorityAnimation == this->animations[key] && this->priorityAnimation->isPlaying())
         {
-            if (!this->isPlaying(key))
-                this->priorityAnimation = NULL;
-
             if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
                 this->lastAnimation->reset();
             this->lastAnimation = this->animations[key];
             
             this->animations[key]->play(dt, modifier_percentage);
         }
+
+        if (!this->priorityAnimation->isPlaying())
+        {
+            this->priorityAnimation = NULL;
+        }
     }
     else if (priority)
     {
+        if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
+            this->lastAnimation->reset();
+        this->lastAnimation = this->animations[key];
         this->priorityAnimation = this->animations[key];
         this->animations[key]->play(dt, modifier_percentage);
     }

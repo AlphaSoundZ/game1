@@ -22,6 +22,8 @@
         "tuple": "cpp",
         "utility": "cpp",
         "ctime": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "memory": "cpp",
+        "random": "cpp"
     }
 }
