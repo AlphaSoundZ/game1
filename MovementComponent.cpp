@@ -46,14 +46,14 @@ void MovementComponent::update(const float& dt)
             this->velocity.y = 0;
     }
     // Max velocity check
-    if (this->velocity.y > this->maxVelocity)
-        this->velocity.y = this->maxVelocity;
-    if (this->velocity.y < -this->maxVelocity)
-        this->velocity.y = -this->maxVelocity;
-    if (this->velocity.x > this->maxVelocity)
-        this->velocity.x = this->maxVelocity;
-    if (this->velocity.x < -this->maxVelocity)
-        this->velocity.x = -this->maxVelocity;
+    if (this->velocity.y > this->maxVelocity*dt)
+        this->velocity.y = this->maxVelocity*dt;
+    if (this->velocity.y < -this->maxVelocity*dt)
+        this->velocity.y = -this->maxVelocity*dt;
+    if (this->velocity.x > this->maxVelocity*dt)
+        this->velocity.x = this->maxVelocity*dt;
+    if (this->velocity.x < -this->maxVelocity*dt)
+        this->velocity.x = -this->maxVelocity*dt;
 
     // Final move
     this->sprite.move(this->velocity); // Uses velocity

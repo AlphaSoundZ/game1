@@ -7,7 +7,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
     this->setPosition(x, y);
 
     this->createHitboxComponent(this->sprite, 17.f, 16.f, 12.f, 14.f);
-    this->createMovementComponent(300.f, 15.f, 5.f); // maxSpeed, acceleration, deceleration
+    this->createMovementComponent(400.f, 15.f, 5.f); // maxSpeed, acceleration, deceleration
     this->createAnimationComponent(texture_sheet);
 
     this->setScale(10.f);
