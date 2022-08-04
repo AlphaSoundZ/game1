@@ -73,8 +73,8 @@ void PauseMenu::initButtons(sf::RenderWindow& window)
         sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), // text color
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200)); // bg color
     nth_btn++;
-    this->buttons["KEYBOARD_CONTROLS"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
-        &this->font, "Keyboard Controls", 
+    this->buttons["SETTINGS"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+        &this->font, "Settings", 
         28, 33, 33, 
         sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255),
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
@@ -99,14 +99,15 @@ void PauseMenu::updateButtons()
 
     // on button event:
     // quit the game
-    if (this->buttons["EXIT_STATE"]->isPressed())
-        cout << "EXIT!" << endl;
     if (this->buttons["UNPAUSE"]->isPressed())
         this->unpause = true;
-    if (this->buttons["KEYBOARD_CONTROLS"]->isPressed())
+    if (this->buttons["SETTINGS"]->isPressed())
     {
-        system("C:\\Users\\janja\\Documents\\GIthubRepos\\game1\\Config\\gamestate_keybinds.ini");
+        this->showSettings = true;
+        // system("C:\\Users\\janja\\Documents\\GIthubRepos\\game1\\Config\\gamestate_keybinds.ini");
     }
+    if (this->buttons["EXIT_STATE"]->isPressed())
+        this->exitGame = true;
 }
 
 void PauseMenu::initFonts()

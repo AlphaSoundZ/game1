@@ -85,6 +85,18 @@ void GameState::update(const float& dt)
         this->pauseMenu.unpause = false;
     }
 
+    if (this->pauseMenu.showSettings)
+    {
+        this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
+        this->pauseMenu.showSettings = false;
+    }
+
+    if (this->pauseMenu.exitGame)
+    {
+        this->endState();
+        this->pauseMenu.exitGame = false;
+    }
+
 
     if (!this->paused) // upaused update
     {

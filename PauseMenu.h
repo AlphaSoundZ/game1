@@ -46,6 +46,8 @@ public:
     virtual ~PauseMenu();
 
     bool unpause = false;
+    bool showSettings = false;
+    bool exitGame = false;
 
     // Functions:
 
