@@ -21,7 +21,7 @@ SettingsState::~SettingsState()
 
 void SettingsState::updateButtons()
 {
-    // Updates all buttons in this state and hnaldes their functionality
+    // Updates all buttons in this state and handles their functionality
 
     for (auto &it : this->buttons)
     {

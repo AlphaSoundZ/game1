@@ -27,6 +27,8 @@ private:
     sf::RectangleShape container;
     sf::Font font;
     sf::Font robotoFont;
+
+    sf::Vector2f mousePosView;
     
     map<string, bool> isHold;
 
@@ -34,16 +36,24 @@ private:
 
     map<string, Button*> buttons;
 
+    sf::RenderWindow* window;
 
+    bool** paused;
+    
+    void initButtons(sf::RenderWindow& window);
+    void initFonts();
 public:
-    PauseMenu(sf::RenderWindow& window);
+    PauseMenu(sf::RenderWindow& window, bool* paused_ptr);
     virtual ~PauseMenu();
 
     // Functions:
 
     void update(const float& dt);
-    void render(sf::RenderTarget& target);
-    void renderButtons(sf::RenderTarget& target);
+    void updateButtons();
+    void render(sf::RenderTarget* target);
+    void renderButtons(sf::RenderTarget* target);
+
+    void set();
 };
 
 #endif
