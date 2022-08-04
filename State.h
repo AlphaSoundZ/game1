@@ -19,6 +19,7 @@ protected:
     map<string, int> keybinds;
     map<string, bool> isHold;
     bool quit;
+    bool paused;
 
 
     sf::Vector2i mousePosScreen;
@@ -37,8 +38,11 @@ public:
     virtual ~State();
 
     const bool & getQuit() const;
-
     void endState();
+
+    void pauseState();
+    void unspauseState();
+    
     virtual void updateMousePositions();
     virtual void update(const float& dt) = 0;
     virtual void updateInput(const float& dt) = 0;

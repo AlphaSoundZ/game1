@@ -2,7 +2,7 @@
 
 // Constructor / destructor
 GameState::GameState(sf::RenderWindow* window, map<string, int>* supportedKeys, stack<State*>* states)
-    : State(window, supportedKeys, states)
+    : State(window, supportedKeys, states), pauseMenu(*window)
 {
     this->initFonts();
     this->initKeybinds();
@@ -35,16 +35,6 @@ void GameState::updateInput(const float& dt)
         this->player->animationComponent->play("FURY_ABILITY", dt, 1, true);
         this->player->movementLock(true); // Prevents player from moving
     }
-    
-    // Quit game state
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
-        this->isHold["CLOSE"] = true;
-    else
-    {
-        if (this->isHold["CLOSE"])
-            this->endState();
-        this->isHold["CLOSE"] = false;
-    }
 
     // Toggle Debug
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DEBUG"))))
@@ -69,10 +59,36 @@ void GameState::updateInput(const float& dt)
 
 void GameState::update(const float& dt)
 {
-    this->updateMousePositions();
-    this->updateInput(dt);
+    // Pause the game
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
+    {
+        if (!this->isHold["CLOSE"])
+        {
+            if (!this->paused)
+                this->pauseState();
+            else
+                this->unspauseState();
+            
+            this->isHold["CLOSE"] = true;
+        }
+    }
+    else
+    {
+        this->isHold["CLOSE"] = false;
+    }
+    
 
-    this->player->update(dt, this->mousePosView);
+    if (!this->paused) // upaused update
+    {
+        this->updateMousePositions();
+        this->updateInput(dt);
+
+        this->player->update(dt, this->mousePosView);
+    }
+    else // paused update
+    {
+        this->pauseMenu.update(dt);
+    }
 }
 
 
@@ -85,6 +101,11 @@ void GameState::render(sf::RenderTarget* target)
     this->player->render(*target);
     if (this->debug)
         this->renderDebug(target);
+    
+    if (this->paused) // PausedMenu render
+    {
+        this->pauseMenu.render(*target);
+    }
 }
 
 // Init functions

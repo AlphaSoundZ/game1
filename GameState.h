@@ -4,6 +4,7 @@
 #pragma once
 
 #include "State.h"
+#include "PauseMenu.h"
 
 class GameState :
     public State
@@ -13,6 +14,8 @@ private:
     bool debug = false;
     sf::Font font, robotoFont;
 
+    PauseMenu pauseMenu;
+    
     Player* player;
 
     // Functions
