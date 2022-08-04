@@ -124,10 +124,6 @@ const bool MovementComponent::getState(const short unsigned state)
         if (this->velocity.y != 0 || this->velocity.x != 0)
             result = true;
         break;
-    case MOVEMENT_LOCKED:
-        if (this->movementLocked)
-            result = true;
-        break;
         
     }
     if (result)

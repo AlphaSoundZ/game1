@@ -35,10 +35,11 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
 {
     this->movementComponent->update(dt);
 
-    if (this->movementComponent->getState(MOVEMENT_LOCKED))
+    if (this->movementComponent->movementLocked)
     {
     }
-    else if (this->movementComponent->getState(MOVING_UP))
+
+    if (this->movementComponent->getState(MOVING_UP))
         this->animationComponent->play("WALK_UP", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
     else if (this->movementComponent->getState(MOVING_DOWN))
         this->animationComponent->play("WALK_DOWN", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
@@ -55,8 +56,7 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
     else if (this->movementComponent->getState(MOVING_RIGHT))
         this->animationComponent->play("WALK_RIGHT", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
     else // Game begin state
-        this->animationComponent->play("IDLE_DOWN", dt); // FIX!!! :: Nach Ability wird diese Animation ausgeführt
-        // cout << this->movementComponent->lastState << endl;
+        this->animationComponent->play("IDLE_DOWN", dt);
 
 
     this->hitboxComponent->update();
