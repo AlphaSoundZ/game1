@@ -18,7 +18,7 @@ void AnimationComponent::play(const string key, const float& dt, const float& mo
 {
     if (this->priorityAnimation)
     {
-        if (this->priorityAnimation == this->animations[key] && this->priorityAnimation->isPlaying())
+        if (this->priorityAnimation == this->animations[key] && this->priorityAnimation->isPlaying()) // play priority animation
         {
             if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
                 this->lastAnimation->reset();
@@ -32,7 +32,7 @@ void AnimationComponent::play(const string key, const float& dt, const float& mo
             this->priorityAnimation = NULL;
         }
     }
-    else if (priority)
+    else if (priority) // set new priority animation
     {
         if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
             this->lastAnimation->reset();
@@ -40,7 +40,7 @@ void AnimationComponent::play(const string key, const float& dt, const float& mo
         this->priorityAnimation = this->animations[key];
         this->animations[key]->play(dt, modifier_percentage);
     }
-    else
+    else // no priority exits. Play requested animation
     {
         if (this->lastAnimation != this->animations[key] && this->lastAnimation != NULL)
             this->lastAnimation->reset();

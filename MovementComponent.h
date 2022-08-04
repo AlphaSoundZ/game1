@@ -32,11 +32,12 @@ private:
     float maxVelocity, acceleration, deceleration;
     sf::Vector2f velocity;
 
-    short unsigned lastState;
 
     // Init functions
 
 public:
+    short unsigned lastState;
+    
     MovementComponent(sf::Sprite& sprite, 
         float maxVelocity, float acceleration, float deceleration);
     virtual ~MovementComponent();

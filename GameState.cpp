@@ -33,7 +33,7 @@ void GameState::updateInput(const float& dt)
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button(this->keybinds.at("FURY_ABILITY"))) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("FURY_ABILITY"))) || this->player->animationComponent->isPlaying("FURY_ABILITY"))
     {
         this->player->animationComponent->play("FURY_ABILITY", dt, 1, true);
-        this->player->movementLock(true);
+        this->player->movementLock(true); // Prevents player from moving
     }
     
     // Quit game state

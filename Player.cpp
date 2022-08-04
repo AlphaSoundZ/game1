@@ -55,7 +55,8 @@ void Player::update(const float& dt, sf::Vector2f mouse_pos_view)
     else if (this->movementComponent->getState(MOVING_RIGHT))
         this->animationComponent->play("WALK_RIGHT", dt, (max(abs(this->movementComponent->getVelocity().y), abs(this->movementComponent->getVelocity().x)) / this->movementComponent->getMaxVelocity()));
     else // Game begin state
-        this->animationComponent->play("IDLE_DOWN", dt);
+        this->animationComponent->play("IDLE_DOWN", dt); // FIX!!! :: Nach Ability wird diese Animation ausgeführt
+        // cout << this->movementComponent->lastState << endl;
 
 
     this->hitboxComponent->update();
