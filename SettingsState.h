@@ -4,7 +4,7 @@
 #pragma once
 
 #include "MainMenuState.h"
-#include "Button.h"
+#include "gui.h"
 
 class SettingsState : public State
 {
@@ -18,7 +18,7 @@ private:
 
     bool debug = false;
 
-    map<string, Button*> buttons;
+    map<string, gui::Button*> buttons;
 
     // Functions
     void initVariables();

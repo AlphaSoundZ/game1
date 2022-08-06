@@ -67,19 +67,19 @@ void PauseMenu::initButtons(sf::RenderWindow& window)
 {
     int topButton[4] = {static_cast<int>(window.getSize().x)/2, static_cast<int>(window.getSize().y)/2-70, 300, 50}, distance = 20, nth_btn = 0;
 
-    this->buttons["UNPAUSE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], // pos, size
+    this->buttons["UNPAUSE"] = new gui::Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], // pos, size
         &this->font, "Resume", // text
         28, 33, 33, // text size
         sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), // text color
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200)); // bg color
     nth_btn++;
-    this->buttons["SETTINGS"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+    this->buttons["SETTINGS"] = new gui::Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Settings", 
         28, 33, 33, 
         sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255),
         sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 50), sf::Color(150, 150, 150, 200));
     nth_btn++;
-    this->buttons["EXIT_STATE"] = new Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
+    this->buttons["EXIT_STATE"] = new gui::Button(topButton[0], topButton[1]+topButton[3]*nth_btn+distance*nth_btn, topButton[2], topButton[3], 
         &this->font, "Exit", 
         28, 33, 33, 
         sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255), sf::Color(255, 255, 255, 255),

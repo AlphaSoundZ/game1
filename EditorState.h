@@ -4,7 +4,7 @@
 #pragma once
 
 #include "State.h"
-#include "Button.h"
+#include "gui.h"
 
 class EditorState
     : public State
@@ -17,7 +17,7 @@ class EditorState
 
     bool debug = false;
 
-    map<string, Button*> buttons;
+    map<string, gui::Button*> buttons;
 
     // Functions
     void initVariables();

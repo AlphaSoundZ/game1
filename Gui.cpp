@@ -1,6 +1,6 @@
-#include "Button.h"
+#include "gui.h"
 
-Button::Button(float x, float y, float width, float height, 
+gui::Button::Button(float x, float y, float width, float height, 
         sf::Font* font, string text,
         unsigned text_idle_size, unsigned text_hover_size, unsigned text_active_size,
         sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color, 
@@ -37,13 +37,13 @@ Button::Button(float x, float y, float width, float height,
     this->shape.setFillColor(this->idleColor);
 }
 
-Button::~Button()
+gui::Button::~Button()
 {
 
 }
 
 // Accessors
-const bool Button::isPressed() const
+const bool gui::Button::isPressed() const
 {
     if (this->button_state == BTN_RELEASED)
         return true;
@@ -51,13 +51,13 @@ const bool Button::isPressed() const
 }
 
 // Functions
-void Button::render(sf::RenderTarget& target)
+void gui::Button::render(sf::RenderTarget& target)
 {
     target.draw(this->shape);
     target.draw(this->text);
 }
 
-void Button::update(const sf::Vector2f mousePos)
+void gui::Button::update(const sf::Vector2f mousePos)
 {    
     // Updates the booleans for hover and pressed
 

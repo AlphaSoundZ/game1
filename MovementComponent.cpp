@@ -64,6 +64,7 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float& 
     // Acceleration
     if (!this->movementLocked)
     {
+        
         this->velocity.x += this->acceleration * dir_x * dt;
         this->velocity.y += this->acceleration * dir_y * dt;
     }

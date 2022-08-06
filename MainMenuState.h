@@ -5,7 +5,7 @@
 
 #include "GameState.h"
 #include "EditorState.h"
-#include "Button.h"
+#include "gui.h"
 
 class MainMenuState : public State
 {
@@ -26,7 +26,7 @@ private:
 
     bool debug = false;
 
-    map<string, Button*> buttons;
+    map<string, gui::Button*> buttons;
 
     // Functions
     void initVariables();

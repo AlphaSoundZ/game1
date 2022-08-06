@@ -18,7 +18,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-#include "Button.h"
+#include "gui.h"
 
 class PauseMenu
 {
@@ -34,7 +34,7 @@ private:
 
     bool debug = false;
 
-    map<string, Button*> buttons;
+    map<string, gui::Button*> buttons;
 
     sf::RenderWindow* window;
 

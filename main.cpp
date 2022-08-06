@@ -6,7 +6,7 @@
 #include "Player.cpp"
 #include "MainMenuState.cpp"
 #include "SettingsState.cpp"
-#include "Button.cpp"
+#include "gui.cpp"
 #include "MovementComponent.cpp"
 #include "AnimationComponent.cpp"
 #include "HitboxComponent.cpp"
@@ -19,4 +19,4 @@ int main()
 
 	game.run();
 	return 0;
-}
+d
